@@ -41,11 +41,12 @@ begin
                 end if;                
             when "1101111" => -- J
             
-                 if instr(31) = '0' then  -- positive
-                    imm <= "000000000000" & instr(31) & instr(21 downto 12) & instr(22) & instr(30 downto 23);
+                -- ethan chapman change
+                if instr(31) = '0' then  -- positive
+                    imm <= "000000000000" & instr(31) & instr(19 downto 12) & instr(20) & instr(30 downto 21);
                 else -- negative
-                    imm <= "111111111111" & instr(31) & instr(21 downto 12) & instr(22) & instr(30 downto 23);
-                end if;              
+                    imm <= "111111111111" & instr(31) & instr(19 downto 12) & instr(20) & instr(30 downto 21);
+                end if;               
             when others =>
                 imm <= (others => '0');
         end case;
