@@ -74,6 +74,7 @@ architecture Behavioral of riscv_pipeline is
     signal if_id_load_addr, id_ex_load_addr, ex_mem_load_addr, mem_wb_load_addr  : STD_LOGIC;
     
      -- Additional signals
+    signal not_equal_flag : STD_LOGIC;
     signal stall, start_stall, double_stall        : STD_LOGIC;
     signal stall_counter : integer range 0 to 3 := 0;
     signal mux_select_A  : STD_LOGIC_VECTOR(1 downto 0) := (others => '0');
@@ -450,7 +451,10 @@ begin
         mem_write => ex_mem_mem_write
     );
     mem_wb_mem_data <= mem_data;  
-        
+
+    -- Comparator 
+    not_equal_flag <= '1' when <what do we compare to decide if we should branch?> else '0';
+            
     next_pc <=  <math based on NPC and imm> when (<what control signals?>) else -- branch case
                 <math based on NPC and imm> when (<what control signals?>) else  -- jump case
                 pc when (<what control signals?>) else   -- stall case
